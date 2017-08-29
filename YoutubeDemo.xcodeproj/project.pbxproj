@@ -8,20 +8,24 @@
 
 /* Begin PBXBuildFile section */
 		C1459AC41F54E996003E84F1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1459AC31F54E996003E84F1 /* AppDelegate.swift */; };
-		C1459AC61F54E996003E84F1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1459AC51F54E996003E84F1 /* ViewController.swift */; };
+		C1459AC61F54E996003E84F1 /* YTViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1459AC51F54E996003E84F1 /* YTViewController.swift */; };
 		C1459AC91F54E996003E84F1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C1459AC71F54E996003E84F1 /* Main.storyboard */; };
 		C1459ACB1F54E996003E84F1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C1459ACA1F54E996003E84F1 /* Assets.xcassets */; };
 		C1459ACE1F54E996003E84F1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C1459ACC1F54E996003E84F1 /* LaunchScreen.storyboard */; };
+		C1459AD81F54F333003E84F1 /* placeholder.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C1459AD71F54F333003E84F1 /* placeholder.jpg */; };
+		C1459ADA1F54F42F003E84F1 /* YTVideoItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1459AD91F54F42F003E84F1 /* YTVideoItemCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		C1459AC01F54E996003E84F1 /* YoutubeDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YoutubeDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1459AC31F54E996003E84F1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		C1459AC51F54E996003E84F1 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		C1459AC51F54E996003E84F1 /* YTViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YTViewController.swift; sourceTree = "<group>"; };
 		C1459AC81F54E996003E84F1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C1459ACA1F54E996003E84F1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C1459ACD1F54E996003E84F1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C1459ACF1F54E996003E84F1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C1459AD71F54F333003E84F1 /* placeholder.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = placeholder.jpg; sourceTree = "<group>"; };
+		C1459AD91F54F42F003E84F1 /* YTVideoItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YTVideoItemCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,7 +59,9 @@
 			isa = PBXGroup;
 			children = (
 				C1459AC31F54E996003E84F1 /* AppDelegate.swift */,
-				C1459AC51F54E996003E84F1 /* ViewController.swift */,
+				C1459AD91F54F42F003E84F1 /* YTVideoItemCell.swift */,
+				C1459AD71F54F333003E84F1 /* placeholder.jpg */,
+				C1459AC51F54E996003E84F1 /* YTViewController.swift */,
 				C1459AC71F54E996003E84F1 /* Main.storyboard */,
 				C1459ACA1F54E996003E84F1 /* Assets.xcassets */,
 				C1459ACC1F54E996003E84F1 /* LaunchScreen.storyboard */,
@@ -124,6 +130,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C1459ACE1F54E996003E84F1 /* LaunchScreen.storyboard in Resources */,
+				C1459AD81F54F333003E84F1 /* placeholder.jpg in Resources */,
 				C1459ACB1F54E996003E84F1 /* Assets.xcassets in Resources */,
 				C1459AC91F54E996003E84F1 /* Main.storyboard in Resources */,
 			);
@@ -136,7 +143,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C1459AC61F54E996003E84F1 /* ViewController.swift in Sources */,
+				C1459ADA1F54F42F003E84F1 /* YTVideoItemCell.swift in Sources */,
+				C1459AC61F54E996003E84F1 /* YTViewController.swift in Sources */,
 				C1459AC41F54E996003E84F1 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -299,6 +307,7 @@
 				C1459AD41F54E996003E84F1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
