@@ -1,5 +1,5 @@
 //
-//  DataLoader.swift
+//  YTDataLoader.swift
 //  YoutubeDemo
 //
 //  Created by Divya Nayak on 29/08/17.
@@ -8,10 +8,10 @@
 
 import UIKit
 
-class DataLoader: NSObject {
+class YTDataLoader: NSObject {
     
     let defaultSession = URLSession (configuration: URLSessionConfiguration.default)
-
+    
     func fetchChannelData (_ completionHandler:  @escaping (_ data: Data)->Void ) {
         guard let url = YTURL.channelURL.addingPercentEncoding( withAllowedCharacters: .urlQueryAllowed) else {
             return

@@ -27,9 +27,21 @@ struct YTURL {
 }
 
 struct Constant {
+    
     static let kThumbnailURL = "thumbnailUrl"
     static let kTitle = "title"
     static let kDuration = "duration"
     static let kDefinition = "definition"
     static let kId = "ID"
+    static let kItems = "items"
+    static let kSnippet = "snippet"
+    static let KThumbnails = "thumbnails"
+    static let KDefault = "default"
+    static let KUrl = "url"
+    static let kid = "id"
+    static let kVideoId = "videoId"
+    static let KStatistics = "statistics"
+    static let KViewCount = "viewCount"
+    static let KContentDetails = "contentDetails"
+    
 }

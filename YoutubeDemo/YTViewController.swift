@@ -11,7 +11,8 @@ import UIKit
 class YTViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
-    var videoList : Array<VideoItem>?
+    var videoList : Array<YTVideoItem>?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         let videoStore = VideoStore()
@@ -24,7 +25,8 @@ class YTViewController: UIViewController {
     }
 }
 
-extension YTViewController: UITableViewDelegate, UITableViewDataSource{
+extension YTViewController: UITableViewDelegate, UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let videoList = videoList  else {
             return 0
@@ -33,7 +35,7 @@ extension YTViewController: UITableViewDelegate, UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "VideoItem") as! YTVideoItemCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "YTVideoItem") as! YTVideoItemCell
         let video = videoList?[indexPath.row]
         cell.videoTitleLabel.text = video?.title
         cell.videoDescriptionLabel.text = video?.definition
@@ -51,8 +53,27 @@ extension YTViewController: UITableViewDelegate, UITableViewDataSource{
             })
             dataTask.resume()
         }
-    
         return cell
     }
+}
+
+private extension YTViewController {
+    
+    func loadData() {
+        
+    }
+    
+    func isChannelDataCached() -> Bool {
+        return false
+    }
+    
+    func performCachedDataFetch() {
+        
+    }
+    
+    func performNetworkDataFetch() {
+        
+    }
+    
 }
 

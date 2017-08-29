@@ -1,5 +1,5 @@
 //
-//  VideoItem.swift
+//  YTVideoItem.swift
 //  YoutubeDemo
 //
 //  Created by Divya Nayak on 29/08/17.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class VideoItem: NSObject {
+class YTVideoItem: NSObject {
     
     var thumbnail: String?
     var title: String?
