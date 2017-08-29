@@ -8,7 +8,7 @@
 
 import UIKit
 
-class VideoItemCell: UITableViewCell {
+class YTVideoItemCell: UITableViewCell {
 
     @IBOutlet weak var videoDescriptionLabel: UILabel!
     @IBOutlet weak var videoThumbnailImageView: UIImageView!
@@ -17,13 +17,11 @@ class VideoItemCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
-        // Configure the view for the selected state
     }
 
 }
