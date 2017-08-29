@@ -10,11 +10,11 @@ import UIKit
 
 class YTVideoItem: NSObject {
     
-    var thumbnail: String?
-    var title: String?
-    var duration: String?
-    var definition: String?
-    var Id: String?
+     var thumbnail: String?
+     var title: String?
+     var duration: String?
+     var definition: String?
+     var Id: String?
     
     init(thumbnail: String, title: String, duration: String, definition:String, Id: String) {
         self.thumbnail = thumbnail

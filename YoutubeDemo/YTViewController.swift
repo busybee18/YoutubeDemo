@@ -15,13 +15,7 @@ class YTViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let videoStore = VideoStore()
-        videoStore.getChannelData { (data) in
-            self.videoList = data
-            DispatchQueue.main.async  {
-                self.tableView.reloadData()
-            }
-        }
+        loadData()
     }
 }
 
@@ -61,9 +55,15 @@ private extension YTViewController {
     
     func loadData() {
         
+        if isChannelDataCached() {
+            
+        }
+        
+        performNetworkDataFetch()
     }
     
     func isChannelDataCached() -> Bool {
+        let list = uiRealm.objects(YTVideo)
         return false
     }
     
@@ -72,7 +72,13 @@ private extension YTViewController {
     }
     
     func performNetworkDataFetch() {
-        
+        let videoStore = YTVideoStore()
+        videoStore.getChannelData { (data) in
+            self.videoList = data
+            DispatchQueue.main.async  {
+                self.tableView.reloadData()
+            }
+        }
     }
     
 }

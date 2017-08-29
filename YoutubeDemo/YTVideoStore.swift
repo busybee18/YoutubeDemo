@@ -1,5 +1,5 @@
 //
-//  VideoStore.swift
+//  YTVideoStore.swift
 //  YoutubeDemo
 //
 //  Created by Divya Nayak on 29/08/17.
@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import RealmSwift
 
-class VideoStore {
+class YTVideoStore {
     
     var videoStore = [YTVideoItem]()
     
@@ -34,8 +35,20 @@ class VideoStore {
             guard let thumbnail = eachData[Constant.kThumbnailURL], let title = eachData[Constant.kTitle], let duration = moreDataAboutVideo[index][Constant.kDuration], let definition = moreDataAboutVideo[index][Constant.kDefinition], let id = eachData[Constant.kId]  else {
                 return
             }
-            let fetchedVideo = YTVideoItem (thumbnail: thumbnail, title: title, duration: duration , definition: definition , Id: id )
-            videoStore.append (fetchedVideo)
+            
+            let video = YTVideo()
+            video.Id = id
+            video.duration = duration
+            video.definition = definition
+            video.title = title
+            video.thumbnail = thumbnail
+            DispatchQueue.main.async  {
+
+            try! uiRealm.write { () -> Void in
+                uiRealm.add(video)
+            }
+                
+            }
         }
     }
 
