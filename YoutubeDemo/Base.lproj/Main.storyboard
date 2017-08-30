@@ -24,15 +24,26 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xRd-cf-JP2">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="YoutubeDemo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gQN-fY-OCf">
+                                        <rect key="frame" x="124.5" y="14" width="127" height="23.5"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
                                 <color key="backgroundColor" red="0.82745098039215681" green="0.12941176470588234" blue="0.0078431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="44" id="DE8-NT-gPt"/>
                                     <constraint firstAttribute="height" constant="50" id="L7a-g6-imn"/>
+                                    <constraint firstItem="gQN-fY-OCf" firstAttribute="centerY" secondItem="xRd-cf-JP2" secondAttribute="centerY" id="kQ2-co-dGU"/>
+                                    <constraint firstItem="gQN-fY-OCf" firstAttribute="centerX" secondItem="xRd-cf-JP2" secondAttribute="centerX" id="sud-KT-DFN"/>
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="100" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="W6t-xN-ni8">
                                 <rect key="frame" x="0.0" y="50" width="375" height="617"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="separatorColor" red="0.49192915013227512" green="0.49192915013227512" blue="0.49192915013227512" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <inset key="separatorInset" minX="15" minY="0.0" maxX="15" maxY="0.0"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="VideoItem" id="8kA-cp-Z4x" customClass="YTVideoItemCell" customModule="YoutubeDemo" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="100"/>
@@ -127,11 +138,88 @@
                     <connections>
                         <outlet property="actvityIndicatoView" destination="a5e-9L-miG" id="F4N-sT-wNs"/>
                         <outlet property="tableView" destination="W6t-xN-ni8" id="ydc-uB-qdf"/>
+                        <segue destination="bgQ-vd-Mgf" kind="presentation" identifier="GoToPlayer" id="b3p-i6-vR4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="32.799999999999997" y="38.23088455772114"/>
+        </scene>
+        <!--Player View Controller-->
+        <scene sceneID="5vz-Gz-9Tc">
+            <objects>
+                <viewController id="bgQ-vd-Mgf" customClass="YTPlayerViewController" customModule="YoutubeDemo" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Avb-vZ-TYG"/>
+                        <viewControllerLayoutGuide type="bottom" id="o6Z-Jd-C6B"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Ucv-nl-bcC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aqg-nT-qtQ">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FQv-EZ-cmh">
+                                        <rect key="frame" x="8" y="9" width="39" height="32"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                        <state key="normal" title="Back">
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <segue destination="UGE-V2-QqR" kind="unwind" unwindAction="unwindToMainWithSegue:" id="2OV-LE-Rsm"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="Label fhjkhf hej jheh hjieh hheuhe hehe heuhe heu fegeh iuyye yeiuy eiuyui yeiu" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0bj-a5-xcp">
+                                        <rect key="frame" x="57" y="13" width="308" height="24"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.82745098039999998" green="0.12941176469999999" blue="0.0078431372550000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="FQv-EZ-cmh" firstAttribute="centerY" secondItem="aqg-nT-qtQ" secondAttribute="centerY" id="Elh-qZ-s2F"/>
+                                    <constraint firstAttribute="height" constant="50" id="KCn-lZ-84E"/>
+                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="0bj-a5-xcp" secondAttribute="trailing" constant="10" id="Lxc-Iz-mOI"/>
+                                    <constraint firstItem="FQv-EZ-cmh" firstAttribute="leading" secondItem="aqg-nT-qtQ" secondAttribute="leading" constant="8" id="MQF-aZ-niz"/>
+                                    <constraint firstItem="0bj-a5-xcp" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="FQv-EZ-cmh" secondAttribute="trailing" constant="10" id="YnL-uS-Myo"/>
+                                    <constraint firstItem="0bj-a5-xcp" firstAttribute="centerX" secondItem="aqg-nT-qtQ" secondAttribute="centerX" priority="250" id="aIO-du-CgE"/>
+                                    <constraint firstItem="0bj-a5-xcp" firstAttribute="centerY" secondItem="aqg-nT-qtQ" secondAttribute="centerY" id="k4h-eK-vwb"/>
+                                </constraints>
+                            </view>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GM6-Ab-A4z">
+                                <rect key="frame" x="0.0" y="50" width="375" height="617"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </webView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="HL7-o2-dkp">
+                                <rect key="frame" x="169" y="315" width="37" height="37"/>
+                                <color key="color" red="1" green="0.2233424923" blue="0.28278559819999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </activityIndicatorView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="GM6-Ab-A4z" firstAttribute="top" secondItem="aqg-nT-qtQ" secondAttribute="bottom" id="CWn-8w-bSd"/>
+                            <constraint firstItem="aqg-nT-qtQ" firstAttribute="leading" secondItem="Ucv-nl-bcC" secondAttribute="leading" id="PJH-CG-W0w"/>
+                            <constraint firstItem="HL7-o2-dkp" firstAttribute="centerX" secondItem="Ucv-nl-bcC" secondAttribute="centerX" id="dhT-fy-QS5"/>
+                            <constraint firstAttribute="trailing" secondItem="GM6-Ab-A4z" secondAttribute="trailing" id="fY0-G6-CLC"/>
+                            <constraint firstAttribute="trailing" secondItem="aqg-nT-qtQ" secondAttribute="trailing" id="kbi-XN-oEY"/>
+                            <constraint firstItem="GM6-Ab-A4z" firstAttribute="leading" secondItem="Ucv-nl-bcC" secondAttribute="leading" id="nQQ-Y7-1QF"/>
+                            <constraint firstItem="o6Z-Jd-C6B" firstAttribute="top" secondItem="GM6-Ab-A4z" secondAttribute="bottom" id="qgR-CE-vzR"/>
+                            <constraint firstItem="aqg-nT-qtQ" firstAttribute="top" secondItem="Ucv-nl-bcC" secondAttribute="top" id="sDo-eT-SK9"/>
+                            <constraint firstItem="HL7-o2-dkp" firstAttribute="centerY" secondItem="Ucv-nl-bcC" secondAttribute="centerY" id="ssO-nm-V3b"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="activityIndicator" destination="HL7-o2-dkp" id="qcc-5K-lKn"/>
+                        <outlet property="titleLabel" destination="0bj-a5-xcp" id="0Pl-5K-kYc"/>
+                        <outlet property="webView" destination="GM6-Ab-A4z" id="B3H-q4-Ere"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FzY-EN-5CA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="UGE-V2-QqR" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="680.79999999999995" y="37.331334332833585"/>
         </scene>
     </scenes>
     <resources>

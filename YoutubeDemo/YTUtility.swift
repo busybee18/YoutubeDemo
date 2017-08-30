@@ -57,3 +57,12 @@ class YTActivityUtility {
         activityIndicatorView.stopAnimating()
     }
 }
+
+class YTAlertUtility {
+    
+    static func showAlert(onViewController viewcontroller:UIViewController, message:String) {
+        let alert = UIAlertController(title:nil, message: message, preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.default, handler: nil))
+        viewcontroller.present(alert, animated: true, completion: nil)
+    }
+}

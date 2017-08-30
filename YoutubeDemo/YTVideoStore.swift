@@ -25,19 +25,21 @@ class YTVideoStore : NSObject {
         return true
     }
     
-    func getChannelData( completionHandler: @escaping () -> Void)  {
+    func getChannelData( completionHandler: @escaping (Error?) -> Void)  {
         let dataLoader = YTDataLoader()
-        dataLoader.fetchChannelData { (response) in
+        dataLoader.fetchChannelData { (response,error) in
             guard let parsedData = YTDataParser.parseVideoData(response) else {
                 print("ERROR in parsing")
                 return
             }
-            dataLoader.fetchMoreDetailAboutVedio(parsedData, callback: { (response) in
+            dataLoader.fetchMoreDetailAboutVedio(parsedData, callback: { (response,error) in
                 guard let parsedMoreDetails = YTDataParser.parseMoreDetailsAboutVedios(response) else {
                     return
                 }
-                self.storeFetchData (parsedData, moreDataAboutVideo: parsedMoreDetails)
-                completionHandler()
+                if error == nil {
+                    self.storeFetchData (parsedData, moreDataAboutVideo: parsedMoreDetails)
+                }
+                completionHandler(error)
             })
         }
     }

@@ -12,38 +12,38 @@ class YTDataLoader: NSObject {
     
     let defaultSession = URLSession (configuration: URLSessionConfiguration.default)
     
-    func fetchChannelData (_ completionHandler:  @escaping (_ data: Data)->Void ) {
+    func fetchChannelData (_ completionHandler:  @escaping (_ data: Data?,_ error : Error?)->Void ) {
         guard let url = YTURL.channelURL.addingPercentEncoding( withAllowedCharacters: .urlQueryAllowed) else {
             return
         }
         let dataTask = defaultSession.dataTask(with: URL(string:url)!, completionHandler: { data,response,error in
             if let error = error {
-                print(error.localizedDescription)
+                completionHandler(nil, error)
             } else if let httpResponse = response as? HTTPURLResponse {
                 if httpResponse.statusCode == 200 {
                     guard let data = data else {
                         return
                     }
-                    completionHandler(data)
+                    completionHandler(data, nil)
                 }
             }
         })
         dataTask.resume ()
     }
     
-    func fetchMoreDetailAboutVedio(_ vedioIds: [[String: String]], callback: @escaping (Data) -> ())  {
+    func fetchMoreDetailAboutVedio(_ vedioIds: [[String: String]], callback: @escaping (Data?,Error?) -> ())  {
         guard let url = YTURL.giveUrlForVedioDetails(vedioIds) else {
             return
         }
         let dataTask = defaultSession.dataTask(with: url, completionHandler: { data,response,error in
             if let error = error {
-                print(error.localizedDescription)
+                callback(nil,error)
             } else if let httpResponse = response as? HTTPURLResponse {
                 if httpResponse.statusCode == 200 {
                     guard let data = data else {
                         return
                     }
-                    callback(data)
+                    callback(data,nil)
                 }
             }
         })

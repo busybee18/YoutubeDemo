@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3481318864DA1E850B8DED55 /* Pods_YoutubeDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC833607F00D94D983720131 /* Pods_YoutubeDemo.framework */; };
+		5A1E9BD71F56BDC500BB8D96 /* YTPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A1E9BD61F56BDC500BB8D96 /* YTPlayerViewController.swift */; };
 		5A2C3C6E1F55770100AE2493 /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A2C3C6D1F55770100AE2493 /* libc++.dylib */; };
 		5A8AC2AF1F55935000D43A92 /* YTVideo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8AC2AE1F55935000D43A92 /* YTVideo.swift */; };
 		5ABF23B51F5559F00098AD76 /* YTStringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ABF23B41F5559F00098AD76 /* YTStringExtension.swift */; };
@@ -25,6 +26,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5A1E9BD61F56BDC500BB8D96 /* YTPlayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YTPlayerViewController.swift; sourceTree = "<group>"; };
 		5A2C3C6D1F55770100AE2493 /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "../../../../usr/lib/libc++.dylib"; sourceTree = "<group>"; };
 		5A8AC2AE1F55935000D43A92 /* YTVideo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YTVideo.swift; sourceTree = "<group>"; };
 		5ABF23B41F5559F00098AD76 /* YTStringExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YTStringExtension.swift; sourceTree = "<group>"; };
@@ -83,6 +85,7 @@
 			isa = PBXGroup;
 			children = (
 				C1459AC51F54E996003E84F1 /* YTViewController.swift */,
+				5A1E9BD61F56BDC500BB8D96 /* YTPlayerViewController.swift */,
 			);
 			name = "View Controller";
 			sourceTree = "<group>";
@@ -301,6 +304,7 @@
 				5AC55C6F1F55423400D85F67 /* YTDataParser.swift in Sources */,
 				5AC55C6D1F553EED00D85F67 /* YTDataLoader.swift in Sources */,
 				C1459ADA1F54F42F003E84F1 /* YTVideoItemCell.swift in Sources */,
+				5A1E9BD71F56BDC500BB8D96 /* YTPlayerViewController.swift in Sources */,
 				5A8AC2AF1F55935000D43A92 /* YTVideo.swift in Sources */,
 				5ABF23B51F5559F00098AD76 /* YTStringExtension.swift in Sources */,
 				C1459AC61F54E996003E84F1 /* YTViewController.swift in Sources */,
