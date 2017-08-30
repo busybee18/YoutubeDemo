@@ -10,42 +10,43 @@ import UIKit
 
 class YTViewController: UIViewController {
     
+    @IBOutlet weak var actvityIndicatoView: UIActivityIndicatorView!
     @IBOutlet weak var tableView: UITableView!
-    var videoList : Array<YTVideoItem>?
     
+    let videoStore = YTVideoStore()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         loadData()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if !videoStore.isCached() {
+            YTActivityUtility.startLoadingAnimation(activityIndicatorView: actvityIndicatoView)
+        }
     }
 }
 
 extension YTViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let videoList = videoList  else {
+        guard let videos = videoStore.videos  else {
             return 0
         }
-        return videoList.count
+        return videos.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "YTVideoItem") as! YTVideoItemCell
-        let video = videoList?[indexPath.row]
-        cell.videoTitleLabel.text = video?.title
-        cell.videoDescriptionLabel.text = video?.definition
-        cell.videoDurationCell.text = video?.duration?.getYoutubeFormattedDuration()
-        
-        let session = URLSession.init(configuration: .default)
-        if let url = URL ( string: (video?.thumbnail)!) {
-            let dataTask = session.dataTask(with: url, completionHandler: { data,response,error in
-                guard let data = data else {
-                    return
-                }
-                DispatchQueue.main.async  {
-                    cell.videoThumbnailImageView.image = UIImage (data: data)
-                }
-            })
-            dataTask.resume()
+        let cell = tableView.dequeueReusableCell(withIdentifier: "VideoItem") as! YTVideoItemCell
+        let video = videoStore.videos![indexPath.row]
+        cell.videoTitleLabel.text = video.title!
+        cell.videoDescriptionLabel.text = video.definition!
+        cell.videoDurationCell.text = video.duration?.getYoutubeFormattedDuration()
+        cell.videoThumbnailImageView.image = UIImage(named:"placeholder.png")
+        cell.viewCountLabel.text = video.viewCount! + " views"
+        if let url = URL ( string: (video.thumbnail)!) {
+            self.loadImage(imageURL: url, forIndexpath: indexPath)
         }
         return cell
     }
@@ -54,32 +55,29 @@ extension YTViewController: UITableViewDelegate, UITableViewDataSource {
 private extension YTViewController {
     
     func loadData() {
-        
-        if isChannelDataCached() {
-            
-        }
-        
-        performNetworkDataFetch()
-    }
-    
-    func isChannelDataCached() -> Bool {
-        let list = uiRealm.objects(YTVideo)
-        return false
-    }
-    
-    func performCachedDataFetch() {
-        
-    }
-    
-    func performNetworkDataFetch() {
-        let videoStore = YTVideoStore()
         videoStore.getChannelData { (data) in
-            self.videoList = data
             DispatchQueue.main.async  {
+                self.videoStore.updateVideoStore()
                 self.tableView.reloadData()
+                YTActivityUtility.stopLoadingAnimation(activityIndicatorView: self.actvityIndicatoView)
             }
         }
     }
     
+    func loadImage(imageURL:URL, forIndexpath indexpath:IndexPath) {
+        let session = URLSession.init(configuration: .default)
+        let dataTask = session.dataTask(with: imageURL, completionHandler: { data,response,error in
+            guard let data = data else {
+                return
+            }
+            DispatchQueue.main.async  {
+                guard let cell = self.tableView.cellForRow(at: indexpath) as? YTVideoItemCell else {
+                    return
+                }
+                cell.videoThumbnailImageView.image = UIImage (data: data)
+            }
+        })
+        dataTask.resume()
+    }
 }
 

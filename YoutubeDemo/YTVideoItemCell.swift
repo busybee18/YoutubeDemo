@@ -10,6 +10,7 @@ import UIKit
 
 class YTVideoItemCell: UITableViewCell {
 
+    @IBOutlet weak var viewCountLabel: UILabel!
     @IBOutlet weak var videoDescriptionLabel: UILabel!
     @IBOutlet weak var videoThumbnailImageView: UIImageView!
     @IBOutlet weak var videoDurationCell: UILabel!

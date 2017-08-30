@@ -31,7 +31,7 @@ struct Constant {
     static let kThumbnailURL = "thumbnailUrl"
     static let kTitle = "title"
     static let kDuration = "duration"
-    static let kDefinition = "definition"
+    static let kDescription = "description"
     static let kId = "ID"
     static let kItems = "items"
     static let kSnippet = "snippet"
@@ -44,4 +44,16 @@ struct Constant {
     static let KViewCount = "viewCount"
     static let KContentDetails = "contentDetails"
     
+}
+
+
+class YTActivityUtility {
+    
+    static func startLoadingAnimation(activityIndicatorView:UIActivityIndicatorView) {
+        activityIndicatorView.startAnimating()
+    }
+    
+    static func stopLoadingAnimation(activityIndicatorView:UIActivityIndicatorView) {
+        activityIndicatorView.stopAnimating()
+    }
 }

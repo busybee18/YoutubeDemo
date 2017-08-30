@@ -16,5 +16,6 @@ class YTVideo: Object {
     dynamic var duration: String?
     dynamic var definition: String?
     dynamic var Id: String?
-    
+    dynamic var viewCount: String?
+
 }

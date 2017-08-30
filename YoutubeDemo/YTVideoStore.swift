@@ -9,11 +9,23 @@
 import UIKit
 import RealmSwift
 
-class YTVideoStore {
+class YTVideoStore : NSObject {
     
-    var videoStore = [YTVideoItem]()
+    var videos : Results<YTVideo>?
+
+    override init () {
+        super.init()
+        loadCatchedData()
+    }
     
-    func getChannelData( completionHandler: @escaping ( [YTVideoItem]) -> Void)  {
+    func isCached() -> Bool {
+        if videos?.count == 0 {
+            return false
+        }
+        return true
+    }
+    
+    func getChannelData( completionHandler: @escaping () -> Void)  {
         let dataLoader = YTDataLoader()
         dataLoader.fetchChannelData { (response) in
             guard let parsedData = YTDataParser.parseVideoData(response) else {
@@ -25,31 +37,58 @@ class YTVideoStore {
                     return
                 }
                 self.storeFetchData (parsedData, moreDataAboutVideo: parsedMoreDetails)
-                completionHandler(self.videoStore)
+                completionHandler()
             })
         }
     }
     
     func storeFetchData ( _ FetchedData: [[String: String]], moreDataAboutVideo: [[String: String]]) {
+        cleanCache()
         for (index, eachData) in FetchedData.enumerated () {
-            guard let thumbnail = eachData[Constant.kThumbnailURL], let title = eachData[Constant.kTitle], let duration = moreDataAboutVideo[index][Constant.kDuration], let definition = moreDataAboutVideo[index][Constant.kDefinition], let id = eachData[Constant.kId]  else {
+            guard let thumbnail = eachData[Constant.kThumbnailURL], let title = eachData[Constant.kTitle], let duration = moreDataAboutVideo[index][Constant.kDuration], let definition = eachData[Constant.kDescription], let id = eachData[Constant.kId], let viewCount = moreDataAboutVideo[index][Constant.KViewCount]  else {
                 return
             }
-            
             let video = YTVideo()
             video.Id = id
             video.duration = duration
             video.definition = definition
             video.title = title
             video.thumbnail = thumbnail
-            DispatchQueue.main.async  {
+            video.viewCount = viewCount
+            cacheVideo(video: video)
+        }
+    }
+    
+    func updateVideoStore() {
+        DispatchQueue.main.async  {
+            self.loadCatchedData()
+        }
+    }
+    
+}
 
+private extension YTVideoStore {
+    
+    func loadCatchedData () {
+        let list = uiRealm.objects(YTVideo.self)
+        videos = list
+    }
+    
+    func cacheVideo(video:YTVideo) {
+        DispatchQueue.main.async  {
             try! uiRealm.write { () -> Void in
                 uiRealm.add(video)
             }
-                
+        }
+    }
+    
+    func cleanCache() {
+        DispatchQueue.main.async  {
+            if !uiRealm.isEmpty {
+                try! uiRealm.write { () -> Void in
+                    uiRealm.deleteAll()
+                }
             }
         }
     }
-
 }

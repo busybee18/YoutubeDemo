@@ -9,7 +9,6 @@
 import UIKit
 
 class YTDataParser: NSObject {
-
     
     static func parseVideoData (_ data : Data?)-> [[String: String]]? {
         var ID: String
@@ -18,7 +17,7 @@ class YTDataParser: NSObject {
             if let data = data, let response = try JSONSerialization.jsonObject (with: data, options:JSONSerialization.ReadingOptions(rawValue:0)) as? [String: AnyObject] {
                 if let array: [NSDictionary] = response[Constant.kItems] as? [NSDictionary] {
                     for video in array  {
-                        guard let snippet = video[Constant.kSnippet] as? NSDictionary,  let title = snippet[Constant.kTitle] as? String else {
+                        guard let snippet = video[Constant.kSnippet] as? NSDictionary,  let title = snippet[Constant.kTitle] as? String, let definition = snippet[Constant.kDescription] as? String else {
                             return nil
                         }
                         guard let thumbnails = snippet[Constant.KThumbnails] as? NSDictionary, let defaultThumbnail = thumbnails[Constant.KDefault] as? NSDictionary , let thumbnailUrl = defaultThumbnail[Constant.KUrl] as? String else {
@@ -31,7 +30,7 @@ class YTDataParser: NSObject {
                         } else {
                             if let id = video[Constant.kid] as? NSDictionary, let vedioId = id[Constant.kVideoId] as? String {
                                 ID = vedioId
-                                parsedData.append ( [Constant.kTitle: title,Constant.kThumbnailURL: thumbnailUrl,Constant.kId: ID])
+                                parsedData.append ([Constant.kTitle: title,Constant.kDescription: definition,Constant.kThumbnailURL: thumbnailUrl,Constant.kId: ID])
                             }
                         }
                         
@@ -56,10 +55,10 @@ class YTDataParser: NSObject {
                         guard let contentDetails = video[Constant.KContentDetails] as? NSDictionary,  let duration = contentDetails[Constant.kDuration] as? String else {
                             return nil
                         }
-                        guard let contentDetail = video[Constant.KContentDetails] as? NSDictionary,  let definition = contentDetail[Constant.kDefinition] as? String else {
-                            return nil
-                        }
-                        detailedVideo.append ([Constant.kDuration: duration,Constant.KViewCount: viewCount, Constant.kDefinition: definition] )
+//                        guard let contentDetail = video[Constant.KContentDetails] as? NSDictionary,  let definition = contentDetail[Constant.kDefinition] as? String else {
+//                            return nil
+//                        }
+                        detailedVideo.append ([Constant.kDuration: duration,Constant.KViewCount: viewCount] )
                     }
                 }
             }
