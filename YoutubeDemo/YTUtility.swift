@@ -44,6 +44,8 @@ struct Constant {
     static let KViewCount = "viewCount"
     static let KContentDetails = "contentDetails"
     
+    static let kCancellationErrorCode = -999
+
 }
 
 

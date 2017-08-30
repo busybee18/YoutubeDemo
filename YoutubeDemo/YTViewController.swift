@@ -47,11 +47,14 @@ extension YTViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "VideoItem") as! YTVideoItemCell
         let video = videoStore.videos![indexPath.row]
-        cell.videoTitleLabel.text = video.title!
-        cell.videoDescriptionLabel.text = video.definition!
-        cell.videoDurationCell.text = video.duration?.getYoutubeFormattedDuration()
-        cell.videoThumbnailImageView.image = UIImage(named:"placeholder.jpg")
-        cell.viewCountLabel.text = video.viewCount! + " views"
+        if let title = video.title, let definition = video.definition, let duration = video.duration, let image = UIImage(named:"placeholder.jpg"), let views = video.viewCount {
+            cell.videoTitleLabel.text = title
+            cell.videoDescriptionLabel.text = definition
+            cell.videoDurationCell.text = duration.getYoutubeFormattedDuration()
+            cell.videoThumbnailImageView.image = image
+            cell.viewCountLabel.text = views + " views"
+        }
+       
         if let url = URL ( string: (video.thumbnail)!) {
             self.loadImage(imageURL: url, forIndexpath: indexPath)
         }

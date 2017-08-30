@@ -30,10 +30,13 @@ class YTPlayerViewController: UIViewController {
 }
 
 extension YTPlayerViewController : UIWebViewDelegate {
-    
+
     func webView(_ webView: UIWebView, didFailLoadWithError error: Error) {
         YTActivityUtility.stopLoadingAnimation(activityIndicatorView: activityIndicator)
-        YTAlertUtility.showAlert(onViewController: self, message: "\(error.localizedDescription)")
+        let error = error as NSError
+        if error.code != Constant.kCancellationErrorCode {
+            YTAlertUtility.showAlert(onViewController: self, message: "\(error.localizedDescription)")
+        }
     }
     
     func webViewDidStartLoad(_ webView: UIWebView) {

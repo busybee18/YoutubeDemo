@@ -16,13 +16,4 @@ class YTVideoItemCell: UITableViewCell {
     @IBOutlet weak var videoDurationCell: UILabel!
     @IBOutlet weak var videoTitleLabel: UILabel!
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-    }
-
 }
