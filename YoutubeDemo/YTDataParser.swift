@@ -33,7 +33,6 @@ class YTDataParser: NSObject {
                                 parsedData.append ([Constant.kTitle: title,Constant.kDescription: definition,Constant.kThumbnailURL: thumbnailUrl,Constant.kId: ID])
                             }
                         }
-                        
                     }
                 }
             }

@@ -29,7 +29,7 @@ class YTVideoStore : NSObject {
         let dataLoader = YTDataLoader()
         dataLoader.fetchChannelData { (response,error) in
             guard let parsedData = YTDataParser.parseVideoData(response) else {
-                print("ERROR in parsing")
+                completionHandler(NSError(domain:"ERROR in parsing", code:-4, userInfo:nil))
                 return
             }
             if parsedData.count == 0 {
@@ -38,6 +38,11 @@ class YTVideoStore : NSObject {
             }
             dataLoader.fetchMoreDetailAboutVedio(parsedData, callback: { (response,error) in
                 guard let parsedMoreDetails = YTDataParser.parseMoreDetailsAboutVedios(response) else {
+                    completionHandler(NSError(domain:"ERROR in parsing", code:-4, userInfo:nil))
+                    return
+                }
+                if parsedData.count == 0 {
+                    completionHandler(NSError(domain:"No Video Info found", code:-3, userInfo:nil))
                     return
                 }
                 if error == nil {
