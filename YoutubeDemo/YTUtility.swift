@@ -10,7 +10,9 @@ import UIKit
 
 struct YTURL {
     
-    static let channelURL = "https://www.googleapis.com/youtube/v3/search?order=date&part=snippet&channelId=UCStuGyg8Uh4HvJALOcFyjcQ&maxResults=50&key=AIzaSyAUQ5wxHLYSQgnUKAP08NI19WAgaIFE63s"
+    static let key = "AIzaSyAUQ5wxHLYSQgnUKAP08NI19WAgaIFE63s"
+    static let channelID = "UCStuGyg8Uh4HvJALOcFyjcQ"
+    static let channelURL = "https://www.googleapis.com/youtube/v3/search?order=date&part=snippet&channelId=\(channelID)&maxResults=50&key=\(key)"
     
     static func giveUrlForVedioDetails (_ id:  [[String: String]]) -> URL? {
         var ids = ""
@@ -19,7 +21,7 @@ struct YTURL {
                 ids = ids + ",\(id)"
             }
         }
-        if let vedioDetailsUrl = URL.init(string: "https://www.googleapis.com/youtube/v3/videos?part=contentDetails,statistics&id=\(ids)&key=AIzaSyAUQ5wxHLYSQgnUKAP08NI19WAgaIFE63s") {
+        if let vedioDetailsUrl = URL.init(string: "https://www.googleapis.com/youtube/v3/videos?part=contentDetails,statistics&id=\(ids)&key=\(key)") {
             return  vedioDetailsUrl
         }
         return nil
