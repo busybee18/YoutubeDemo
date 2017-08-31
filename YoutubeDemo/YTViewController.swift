@@ -14,17 +14,30 @@ class YTViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     let videoStore = YTVideoStore()
-
+    let refreshControl = UIRefreshControl()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         loadData()
+        setUpRefreshControl()
+    }
+    
+    func applicationDidBecomeActive(_ notification: NSNotification) {
+        let when = DispatchTime.now() + 2.0
+        DispatchQueue.main.asyncAfter(deadline: when) {
+            self.loadData()
+        }
+        showActivityIfRequired()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        if !videoStore.isCached() {
-            YTActivityUtility.startLoadingAnimation(activityIndicatorView: actvityIndicatoView)
-        }
+        addObservers()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        removeObservers()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -77,6 +90,7 @@ private extension YTViewController {
                     self.videoStore.updateVideoStore()
                     self.tableView.reloadData()
                 }
+                self.refreshControl.endRefreshing()
                 YTActivityUtility.stopLoadingAnimation(activityIndicatorView: self.actvityIndicatoView)
             }
         }
@@ -96,6 +110,39 @@ private extension YTViewController {
             }
         })
         dataTask.resume()
+    }
+    
+    func setUpRefreshControl() {
+        tableView.addSubview(refreshControl)
+        let attributes: [String:AnyObject] =
+            [NSFontAttributeName : UIFont(name:"HelveticaNeue-Italic", size:15) ?? UIFont.systemFont(ofSize: 15),
+             NSForegroundColorAttributeName : UIColor.white]
+        refreshControl.attributedTitle = NSAttributedString(string:"Refreshing",attributes:attributes)
+        refreshControl.backgroundColor = UIColor(red:0.83, green:0.13, blue:0.01, alpha:1)
+        refreshControl.tintColor = UIColor.white
+        refreshControl.addTarget(self, action: #selector(YTViewController.refresh), for: UIControlEvents.valueChanged)
+    }
+    
+    @objc func refresh() {
+        loadData()
+    }
+    
+    func showActivityIfRequired() {
+        if !videoStore.isCached() {
+            YTActivityUtility.startLoadingAnimation(activityIndicatorView: actvityIndicatoView)
+        }
+    }
+    
+    func addObservers() {
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(applicationDidBecomeActive(_:)),
+            name: NSNotification.Name.UIApplicationDidBecomeActive,
+            object: nil)
+    }
+    
+    func removeObservers() {
+        NotificationCenter.default.removeObserver(self)
     }
 }
 
