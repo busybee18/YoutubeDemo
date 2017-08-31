@@ -439,7 +439,7 @@
 					"$(PROJECT_DIR)/YoutubeDemo",
 				);
 				INFOPLIST_FILE = YoutubeDemo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.aspire.YoutubeDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -458,7 +458,7 @@
 					"$(PROJECT_DIR)/YoutubeDemo",
 				);
 				INFOPLIST_FILE = YoutubeDemo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.aspire.YoutubeDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
