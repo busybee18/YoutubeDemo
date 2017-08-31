@@ -13,7 +13,7 @@ struct YTURL {
     static let key = "AIzaSyAUQ5wxHLYSQgnUKAP08NI19WAgaIFE63s"
     static let channelID = "UCStuGyg8Uh4HvJALOcFyjcQ"
     static let channelURL = "https://www.googleapis.com/youtube/v3/search?order=date&part=snippet&channelId=\(channelID)&maxResults=50&key=\(key)"
-    
+        
     static func giveUrlForVedioDetails (_ id:  [[String: String]]) -> URL? {
         var ids = ""
         for item in id{
@@ -21,6 +21,10 @@ struct YTURL {
                 ids = ids + ",\(id)"
             }
         }
+        if ids.isEmpty {
+            return nil
+        }
+        ids.remove(at: ids.startIndex)
         if let vedioDetailsUrl = URL.init(string: "https://www.googleapis.com/youtube/v3/videos?part=contentDetails,statistics&id=\(ids)&key=\(key)") {
             return  vedioDetailsUrl
         }
@@ -49,7 +53,6 @@ struct Constant {
     static let kCancellationErrorCode = -999
 
 }
-
 
 class YTActivityUtility {
     

@@ -33,6 +33,7 @@ class YTDataLoader: NSObject {
     
     func fetchMoreDetailAboutVedio(_ vedioIds: [[String: String]], callback: @escaping (Data?,Error?) -> ())  {
         guard let url = YTURL.giveUrlForVedioDetails(vedioIds) else {
+            callback(nil,NSError(domain:"Bad request", code:-1, userInfo:nil))
             return
         }
         let dataTask = defaultSession.dataTask(with: url, completionHandler: { data,response,error in
@@ -44,6 +45,8 @@ class YTDataLoader: NSObject {
                         return
                     }
                     callback(data,nil)
+                } else {
+                    callback(nil,NSError(domain:HTTPURLResponse.localizedString(forStatusCode: httpResponse.statusCode), code:httpResponse.statusCode, userInfo:nil))
                 }
             }
         })

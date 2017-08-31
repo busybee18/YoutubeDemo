@@ -55,9 +55,6 @@ class YTDataParser: NSObject {
                         guard let contentDetails = video[Constant.KContentDetails] as? NSDictionary,  let duration = contentDetails[Constant.kDuration] as? String else {
                             return nil
                         }
-//                        guard let contentDetail = video[Constant.KContentDetails] as? NSDictionary,  let definition = contentDetail[Constant.kDefinition] as? String else {
-//                            return nil
-//                        }
                         detailedVideo.append ([Constant.kDuration: duration,Constant.KViewCount: viewCount] )
                     }
                 }
